@@ -1,18 +1,17 @@
 # tic-tac-toe
 Tic Tac Toe Board 
 
-To get it working first start the back end server:
+To get the Tic Tac Toe board working, follow these instructions:
 
-node-server/
 ```
-run " yarn start"
-
-then run the front end react app: 
-
-front-end/
-```
+cd node-server/
 run "yarn start"
 
+then open a seperate command line and run the front end react app: 
+
+cd front-end/
+run "yarn start"
+```
 
 ## front end structure
 
