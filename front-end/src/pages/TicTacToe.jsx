@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import Square from "./Square";
+import Square from "../components/Square";
 import * as R from "remeda";
-import { Spin } from "antd";
-import { LoadingOutlined } from "@ant-design/icons";
 
-import sendGameMove from "./operations/sendGameMove";
+import Spinner from "../components/Spinner";
+import sendGameMove from "../operations/sendGameMove";
 
 const Container = styled.div`
   display: flex;
@@ -22,26 +21,11 @@ const InnerContainer = styled.div`
   border: 40px solid var(--dark);
 `;
 
-const Spinner = styled.div`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--grey);
-  opacity: 0.7;
-`;
-
 const initialState = [
   ["", "", ""],
   ["", "", ""],
   ["", "", ""],
 ];
-const antIcon = (
-  <LoadingOutlined style={{ fontSize: 128, color: "var(--dark)" }} spin />
-);
 
 const TicTacToe = ({ setHasValidToken }) => {
   const [gameState, setGameState] = useState(initialState);
@@ -64,17 +48,11 @@ const TicTacToe = ({ setHasValidToken }) => {
     setGameState(results.board);
   };
 
-  useEffect(() => {}, []);
-
   const flattenBoard = gameState.flat();
 
   return (
     <Container>
-      {isLoading ? (
-        <Spinner>
-          <Spin indicator={antIcon} />
-        </Spinner>
-      ) : null}
+      {isLoading ? <Spinner /> : null}
       <InnerContainer>
         {flattenBoard.map((item, index) => {
           return (

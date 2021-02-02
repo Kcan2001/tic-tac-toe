@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import SignIn from "./SignInForm";
-import TicTacToe from "./TicTacToe";
+import SignIn from "./pages/SignInForm";
+import TicTacToe from "./pages/TicTacToe";
 
 const Container = styled.div`
   display: flex;
