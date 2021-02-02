@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input } from "antd";
 import styled from "styled-components";
 import getToken from "../operations/getToken";
 import Spinner from "../components/Spinner";
+import Button from "../components/Button";
 
 const Container = styled.div`
   display: flex;
@@ -34,6 +35,10 @@ const InputStyle = styled(Form.Item)`
     margin: 0 0 4px;
   }
 
+  .ant-form-item-explain-error {
+    color: #cc0000;
+  }
+
   input {
     padding: 6px 0;
     border-radius: 2px;
@@ -41,17 +46,6 @@ const InputStyle = styled(Form.Item)`
     font-family: lato;
     width: 100%;
   }
-`;
-
-const SubmitButton = styled(Button)`
-  padding: 10px 18px;
-  color: white;
-  border: none;
-  font-family: lato;
-  cursor: pointer;
-  size: 16px;
-  border-radius: 4px;
-  background-color: var(--purple);
 `;
 
 const SignIn = ({ setHasValidToken }) => {
@@ -97,9 +91,7 @@ const SignIn = ({ setHasValidToken }) => {
         </InputStyle>
 
         <ButtonContainer>
-          <SubmitButton type="primary" htmlType="submit">
-            Submit
-          </SubmitButton>
+          <Button type="primary" htmlType="submit" text="Submit" />
         </ButtonContainer>
       </Form>
     </Container>

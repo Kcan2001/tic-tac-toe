@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Square from "../components/Square";
 import * as R from "remeda";
 
+import Button from "../components/Button";
 import Spinner from "../components/Spinner";
 import sendGameMove from "../operations/sendGameMove";
 
@@ -19,6 +20,13 @@ const InnerContainer = styled.div`
   height: 100%;
   padding: 120px;
   border: 40px solid var(--dark);
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 36px;
 `;
 
 const initialState = [
@@ -64,6 +72,13 @@ const TicTacToe = ({ setHasValidToken }) => {
             />
           );
         })}
+
+        <ButtonContainer>
+          <Button
+            text="Reset Board"
+            onClick={() => setGameState(initialState)}
+          />
+        </ButtonContainer>
       </InnerContainer>
     </Container>
   );
