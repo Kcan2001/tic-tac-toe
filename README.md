@@ -11,7 +11,7 @@ git clone git@github.com:Kcan2001/tic-tac-toe.git
 
 ```
 cd node-server/
-run  "yarn install" then "yarn start"
+run "yarn install" then "yarn start"
 
 then open a seperate command line and run the front end react app: 
 
@@ -19,7 +19,7 @@ cd front-end/
 run "yarn install" then "yarn start"
 ```
 
-## front end structure
+## Front end Structure
 
 within the src folder you'll find these folders:  
 components - Smaller view components  
@@ -28,7 +28,7 @@ operations - Infomation and logic related to getting data from the backend node 
 pages - Signup form and tictactoe pages  
 utils - main game logic  
 
-## node-server structure
+## Node-server Structure
 
 index - main file to manage the /auth and /engine routes for the application  
 
