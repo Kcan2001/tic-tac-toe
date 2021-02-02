@@ -7,6 +7,8 @@ import Button from "../components/Button";
 import Spinner from "../components/Spinner";
 import sendGameMove from "../operations/sendGameMove";
 
+import { handleValidation } from "../utils/validateGameData";
+
 const Container = styled.div`
   display: flex;
   width: 60%;
@@ -22,11 +24,21 @@ const InnerContainer = styled.div`
   border: 40px solid var(--dark);
 `;
 
+const ResultTitle = styled.h1`
+  margin: 0 0 24px;
+  font-size: 24px;
+  font-family: lato;
+  color: var(--dark);
+  text-align: center;
+  width: 100%;
+  margin: 36px 0 0;
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 36px;
+  margin: 16px 0 0;
 `;
 
 const initialState = [
@@ -37,9 +49,18 @@ const initialState = [
 
 const TicTacToe = ({ setHasValidToken }) => {
   const [gameState, setGameState] = useState(initialState);
+  const [gameResult, setGameResult] = useState("");
+  const [gameOver, setGameOver] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const resetGameState = () => {
+    setGameState(initialState);
+    setGameResult("");
+    setGameOver(false);
+  };
+
   const handleSquareClick = async (index) => {
+    if (gameOver) return;
     const flatten = gameState.flat();
     flatten[index] = "X";
 
@@ -49,8 +70,16 @@ const TicTacToe = ({ setHasValidToken }) => {
     const results = await sendGameMove(board);
     setIsLoading(false);
 
+    // Logs users out if the token is invalid.
     if (results.error) {
       setHasValidToken(false);
+    }
+
+    const gameFinalResults = handleValidation(results && results.board);
+
+    if (gameFinalResults) {
+      setGameResult(gameFinalResults);
+      setGameOver(true);
     }
 
     setGameState(results.board);
@@ -73,11 +102,11 @@ const TicTacToe = ({ setHasValidToken }) => {
           );
         })}
 
+        {gameResult && gameResult !== "" ? (
+          <ResultTitle>{gameResult}</ResultTitle>
+        ) : null}
         <ButtonContainer>
-          <Button
-            text="Reset Board"
-            onClick={() => setGameState(initialState)}
-          />
+          <Button text="Reset Board" onClick={resetGameState} />
         </ButtonContainer>
       </InnerContainer>
     </Container>
