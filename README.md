@@ -1,16 +1,22 @@
-# tic-tac-toe
-Tic Tac Toe Board 
+# Tic-Tac-Toe Board
 
 To get the Tic Tac Toe board working, follow these instructions:
 
+1. Clone the repo with:
+```
+git clone git@github.com:Kcan2001/tic-tac-toe.git
+```
+
+2. Install npm package, then run both back-end and front-end servers:
+
 ```
 cd node-server/
-run "yarn start"
+run  "yarn install" then "yarn start"
 
 then open a seperate command line and run the front end react app: 
 
 cd front-end/
-run "yarn start"
+run "yarn install" then "yarn start"
 ```
 
 ## front end structure
